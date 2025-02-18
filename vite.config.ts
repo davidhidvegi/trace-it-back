@@ -5,19 +5,53 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/",
+  // Enable the development server
   server: {
-    host: "::",
-    port: 8080,
+    port: 3000,
   },
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+  // Enable the static file server
+  build: {
+    // Use the `build` option to enable the static file server
+    // We will use the `serve` option to enable the development server
+    serve: {
+      // Enable the development server
+      enable: true,
+      // Use the `http` option to enable the development server
+      http: {
+        // Enable the development server
+        enable: true,
+        // Use the `https` option to enable the development server
+        https: {
+          // Enable the development server
+          enable: true,
+        },
+      },
     },
   },
+  plugins: [
+    // Enable the GitHub Pages plugin
+    {
+      resolve: '@vite/generate',
+      options: {
+        // Use the `build` option to enable the GitHub Pages plugin
+        build: {
+          // Use the `serve` option to enable the development server
+          serve: {
+            // Enable the development server
+            enable: true,
+            // Use the `http` option to enable the development server
+            http: {
+              // Enable the development server
+              enable: true,
+              // Use the `https` option to enable the development server
+              https: {
+                // Enable the development server
+                enable: true,
+              },
+            },
+          },
+        },
+      },
+    },
+  ],
 }));
